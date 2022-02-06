@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-volume
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx:latest
+      volumeMounts:
+        - mountPath: /volume-dentro-do-container
+          name: volume
+  volumes:
+    - name: volume
+      hostPath:
+        path: /C/users/guilh/documents/cursos/kubernetes/volumes
+        type: Directory
