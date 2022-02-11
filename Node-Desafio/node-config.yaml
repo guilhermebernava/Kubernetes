@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: node-config
+  labels:
+    app: node
+data:
+  PORT: '7000'
+  USER: netcoreguilherme
+  PASSWORD: '123456'
+  DATABASE: netcoreguilherme
+  HOST: '67.205.149.151'
+  DIALECT: postgres

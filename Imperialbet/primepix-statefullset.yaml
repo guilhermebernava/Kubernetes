@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: primepix-statefulset
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: primepix
+      name: primepix
+    spec:
+      containers:
+        - name: primepix-container
+          image: bernavaguilherme/primepix
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: apps
+              mountPath: /app
+      volumes:
+        - name: apps
+          persistentVolumeClaim:
+            claimName: pvc-primepix
+  selector:
+    matchLabels:
+      app: primepix
+  serviceName: svc-primepix

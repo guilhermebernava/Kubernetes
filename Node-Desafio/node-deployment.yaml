@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment
+spec:
+  template:
+    metadata:
+      name: node
+      labels:
+        app: node-desafio
+    spec:
+      containers:
+        - name: node-container
+          imagePullPolicy: Never
+          image:  bernava/node
+          ports:
+            - containerPort: 7000
+          envFrom:
+            - configMapRef:
+                name: node-config
+  replicas: 3
+  selector: 
+    matchLabels:
+      app: node-desafio
